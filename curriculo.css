@@ -1,0 +1,84 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 80%;
+    margin: auto;
+    background-color: #8d6faf65;
+    margin-bottom: 56px;
+}
+.RedesSociais {
+    color: rgb(75, 0, 146);
+    text-align: right; 
+    font-family: sans-serif;
+    list-style: none;
+    font-size: 100%;
+    padding: 0;  
+}
+
+.RedesSociais li {
+    display: inline-block;  
+    margin-right: 10px;  
+}
+
+h1 {
+    background-color: #8d6faf36;
+    color:#48095c;
+    text-align: center;
+    font-size: 46px;
+    margin-bottom: 0;
+}
+
+
+#Apresentacao {
+    text-align: center;
+}
+h2 {
+    color: #48095c;
+    background-color: #721b8d3f;
+    font-size: 30px;
+    border-bottom: 4px solid;
+    padding: 10px;
+    margin-top: 48px;
+    margin-bottom: 12px;
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+li {
+    list-style-position: inside;
+}
+
+.center {
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.menu {
+    text-align: center;
+}
+
+.menu li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0;
+}
+
+.menu a {
+    background-color: #48095c;
+    padding: 16px;
+    display: block;
+}
+
+.menu a:hover {
+    background-color: #48095c;
+    color: #ffff;
+    text-decoration: none;
+}
