@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #cccc;
+}
+
+.navegacao{
+    background-image: url(../ibagens/computadorbackground.jpg) ;
+    height: 500px;
+    background-size: cover;
+    background-position: right center;
+    padding: 1px;
+}
+
+.conteudoI {
+    margin: 100px auto 0;
+    width: 80%;
+    text-align: center;
+    color: white;
+}
+
+.conteudoI h1 {
+    font-size: 56px;
+    text-shadow: 2px 2px 2px black;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.conteudoI p {
+    background-color: rgb(0, 0, .7);
+    font-size: 18px;
+    display: inline-block;
+    padding: 16px;
+    border-bottom: 2px solid;
+}
+
+.navegacao nav ul {
+    margin: 20px 80px 0 0;
+    text-align: right;
+}
+
+.navegacao nav li {
+    display: inline-block;
+    list-style-type: none;
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 16px;
+}
+
+.navegacao nav a {
+    background-color: rgb(0, 0, .3);
+    padding: 16px;
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.navegacao nav a:hover {
+    background-color: rgba(0, 0, 0, .5);
+    
+}
+
+.main {
+   width: 90%;
+   margin:auto;
+   max-width: 860px;
+}
+
+.article {
+  background-color: #fcfcfc;
+  padding: 16px;
+  margin-bottom: 32px;
+  margin-top: 32px;
+}
+
+article h2 {
+ border-bottom: 2px solid #cdc7c3;
+ background-color: #eee;
+ padding: 10px;
+ margin-top: 0;
+}
+
+.btn {
+    background-color:#cdc7c3;
+    display:block;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-left: auto;
+    width: fit-content;
+}
+
+.rodape{
+  color: white;
+  background-color: #6b6c68;
+  text-align: center;
+  padding: 30px;
+  text-shadow: 2px 2px 2px black;
+  letter-spacing: 2px;
+}
