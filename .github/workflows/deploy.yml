@@ -14,7 +14,6 @@ permissions:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
     environment:
@@ -22,10 +21,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v6
-
 
       - name: Download GitHub repositories
         env:
@@ -49,15 +46,14 @@ jobs:
             [
               .[]
               |
-             select(
-  .fork == false
-  and
-  .archived == false
-  and
-  .name != "codebymirela.github.io"
-  and
-  (.topics | index("portfolio"))
-)
+              select(
+                .fork == false
+                and
+                .archived == false
+                and
+                .name != "codebymirela.github.io"
+                and
+                (.topics | index("portfolio"))
               )
               |
               {
@@ -82,16 +78,13 @@ jobs:
           echo "Generated projects.json:"
           cat data/projects.json
 
-
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-
 
       - name: Upload website
         uses: actions/upload-pages-artifact@v4
         with:
           path: "."
-
 
       - name: Deploy
         id: deployment
