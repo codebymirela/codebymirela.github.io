@@ -2,16 +2,19 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Project Archive</title>
+    <title>Project Archive | Mirela</title>
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=3">
-
+    <link
+        rel="stylesheet"
+        href="/assets/css/style.css?v=3"
+    >
 </head>
 
 <body>
@@ -23,12 +26,11 @@
         <h1>PROJECT ARCHIVE</h1>
 
         <p>
-            things i've built, broken
-            and eventually fixed.
+            things i've built, broken and eventually fixed.
         </p>
 
         <p>
-            <a href="index.html">
+            <a href="/">
                 [ ← return home ]
             </a>
         </p>
@@ -38,18 +40,52 @@
 
     <section class="box">
 
-        <div id="featured-projects">
+        <h2>filter projects</h2>
 
-            connecting to github...
+        <div
+            id="project-filters"
+            class="project-filters"
+        >
+            <p class="project-meta">
+                loading filters...
+            </p>
+        </div>
+
+        <p class="project-result-count">
+            projects found:
+            <span id="filtered-project-count">...</span>
+        </p>
+
+    </section>
+
+
+    <section class="box">
+
+        <div id="project-archive">
+
+            <p>
+                accessing project archive...
+            </p>
 
         </div>
 
     </section>
 
+
+    <footer>
+
+        <p>~/projects</p>
+
+        <p>
+            github-powered project archive
+        </p>
+
+    </footer>
+
 </div>
 
 
-<script src="assets/js/projects.js"></script>
+<script src="/assets/js/projects.js?v=3"></script>
 
 </body>
 
