@@ -49,12 +49,15 @@ jobs:
             [
               .[]
               |
-              select(
-                .fork == false
-                and
-                .archived == false
-                and
-                .name != "codebymirela.github.io"
+             select(
+  .fork == false
+  and
+  .archived == false
+  and
+  .name != "codebymirela.github.io"
+  and
+  (.topics | index("portfolio"))
+)
               )
               |
               {
