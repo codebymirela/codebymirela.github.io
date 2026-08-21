@@ -109,16 +109,24 @@ function createProjectCard(repo) {
         </p>
 
         <div class="project-links">
-            <a
-                href="${repo.html_url}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                [ source code ]
-            </a>
 
-            ${liveDemo}
-        </div>
+    <a
+        href="/project.html?repo=${encodeURIComponent(repo.name)}"
+    >
+        [ open project ]
+    </a>
+
+    <a
+        href="${repo.html_url}"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        [ github ]
+    </a>
+
+    ${liveDemo}
+
+</div>
     `;
 
     return project;

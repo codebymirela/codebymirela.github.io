@@ -474,6 +474,57 @@ footer {
     color: #555;
 }
 
+/* =====================================
+   PROJECT DETAIL
+===================================== */
+
+.project-hero {
+    position: relative;
+}
+
+.project-hero::after {
+    content: "read-only";
+
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    color: #555;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.project-hero h2 {
+    font-size: 20px;
+
+    margin-top: 6px;
+    margin-bottom: 10px;
+
+    color: #ddd;
+}
+
+.project-detail-list {
+    padding-left: 0;
+    list-style: none;
+}
+
+.project-detail-list li {
+    margin-bottom: 5px;
+}
+
+.project-detail-list li::before {
+    content: ":: ";
+
+    color: #555;
+}
+
+.project-links a {
+    white-space: nowrap;
+}
+
 @media (max-width: 720px) {
     .layout {
         grid-template-columns: 1fr;
