@@ -382,6 +382,98 @@ footer {
 
 /* MOBILE */
 
+/* =====================================
+   OLD WEB PROJECT FILTERS
+===================================== */
+
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 14px;
+    padding: 10px;
+
+    border: 1px dashed #333;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.015) 0,
+            rgba(255,255,255,0.015) 1px,
+            transparent 1px,
+            transparent 6px
+        ),
+        #101010;
+}
+
+.filter-button {
+    position: relative;
+
+    border: 1px solid #444;
+    background: #151515;
+
+    color: #9ab7e8;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 11px;
+
+    padding: 4px 9px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.1s,
+        color 0.1s,
+        transform 0.1s;
+}
+
+.filter-button::before {
+    content: "$ ";
+
+    color: #666;
+}
+
+.filter-button:hover {
+    background: #9ab7e8;
+    color: #111;
+
+    transform: translateY(-1px);
+}
+
+.filter-button:hover::before {
+    color: #333;
+}
+
+.filter-button.active {
+    background: #c6d4ef;
+    color: #111;
+
+    border-color: #c6d4ef;
+}
+
+.filter-button.active::before {
+    content: "> ";
+    color: #333;
+}
+
+.project-result-count {
+    margin-top: 12px;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+.project-result-count::before {
+    content: "archive:// ";
+    color: #555;
+}
+
 @media (max-width: 720px) {
     .layout {
         grid-template-columns: 1fr;
