@@ -1,0 +1,84 @@
+name: Update Portfolio and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+
+      - name: Download GitHub repositories
+        env:
+          GITHUB_USERNAME: codebymirela
+          GH_TOKEN: ${{ github.token }}
+
+        run: |
+
+          mkdir -p data
+
+          curl \
+            -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/users/$GITHUB_USERNAME/repos?per_page=100&sort=updated&direction=desc&type=owner" \
+            > repositories.json
+
+
+          jq '
+            [
+              .[]
+              |
+              select(
+                .fork == false
+                and
+                .archived == false
+              )
+              |
+              {
+                name,
+                description,
+                html_url,
+                homepage,
+                language,
+                topics,
+                stargazers_count,
+                updated_at
+              }
+            ]
+          ' repositories.json > data/projects.json
+
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "."
+
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

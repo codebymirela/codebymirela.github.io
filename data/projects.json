@@ -1,0 +1,14 @@
+[
+    {
+        "name": "aws-finops-reporter",
+        "description": "Automated AWS FinOps cost reporting system.",
+        "html_url": "https://github.com/",
+        "language": "Python",
+        "topics": [
+            "aws",
+            "finops",
+            "lambda"
+        ],
+        "updated_at": "2026-08-21T00:00:00Z"
+    }
+]
