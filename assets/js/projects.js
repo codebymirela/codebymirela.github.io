@@ -13,8 +13,6 @@ async function loadProjects() {
 
         const repos = await response.json();
 
-        console.log("Projects loaded:", repos);
-
         if (count) {
             count.textContent = repos.length;
         }
@@ -23,29 +21,56 @@ async function loadProjects() {
             return;
         }
 
+        const isProjectsPage =
+            window.location.pathname.includes("projects");
+
+        const projectsToRender = isProjectsPage
+            ? repos
+            : repos.filter(repo =>
+                Array.isArray(repo.topics) &&
+                repo.topics.includes("featured")
+            );
+
         container.innerHTML = "";
 
-        if (repos.length === 0) {
+        if (projectsToRender.length === 0) {
             container.innerHTML = `
-                <p>no portfolio projects found yet.</p>
+                <p>no projects found.</p>
             `;
             return;
         }
 
-        repos.forEach(repo => {
+        projectsToRender.forEach(repo => {
             const project = document.createElement("article");
 
             project.className = "project";
 
             const topics = Array.isArray(repo.topics)
                 ? repo.topics
-                    .map(topic => `<span class="topic">${topic}</span>`)
+                    .filter(topic => topic !== "portfolio")
+                    .map(topic =>
+                        `<span class="topic">${topic}</span>`
+                    )
                     .join("")
                 : "";
 
             const date = repo.updated_at
-                ? new Date(repo.updated_at).toLocaleDateString("pt-BR")
+                ? new Date(repo.updated_at)
+                    .toLocaleDateString("pt-BR")
                 : "unknown";
+
+            const homepage =
+                repo.homepage
+                    ? `
+                        <a
+                            href="${repo.homepage}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            [ live demo ]
+                        </a>
+                    `
+                    : "";
 
             project.innerHTML = `
                 <h3>${repo.name}</h3>
@@ -66,13 +91,17 @@ async function loadProjects() {
                     last update: ${date}
                 </p>
 
-                <a
-                    href="${repo.html_url}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    [ source code ]
-                </a>
+                <div>
+                    <a
+                        href="${repo.html_url}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        [ source code ]
+                    </a>
+
+                    ${homepage}
+                </div>
             `;
 
             container.appendChild(project);
