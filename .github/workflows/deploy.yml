@@ -7,8 +7,11 @@ on:
 
   workflow_dispatch:
 
+  schedule:
+    - cron: "*/5 * * * *"
+
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -77,6 +80,111 @@ jobs:
 
           echo "Generated projects.json:"
           cat data/projects.json
+
+      - name: Create missing project documentation
+        run: |
+          mkdir -p project-content
+
+          jq -r '
+            .[]
+            |
+            select(
+              .fork == false
+              and
+              .archived == false
+              and
+              .name != "codebymirela.github.io"
+            )
+            |
+            .name
+          ' repositories.json |
+          while IFS= read -r repo
+          do
+
+            file="project-content/${repo}.md"
+
+            if [ ! -f "$file" ]; then
+
+              echo "Creating documentation for: $repo"
+
+              cat > "$file" <<EOF
+# $repo
+
+## Overview
+
+Add a general overview of the project.
+
+## Problem
+
+What problem does this project solve?
+
+## Architecture
+
+Describe the architecture and main components.
+
+## Technologies
+
+- Add technologies here
+
+## Implementation
+
+Explain how the project was implemented.
+
+## Challenges
+
+Describe the main technical challenges.
+
+## Security
+
+Describe security decisions and considerations.
+
+## FinOps
+
+Describe cost optimization decisions, if applicable.
+
+## Troubleshooting
+
+Describe relevant problems encountered and how they were solved.
+
+## Results
+
+Describe the results of the project.
+
+## What I Learned
+
+Describe the main technical lessons learned.
+
+EOF
+
+            else
+
+              echo "Documentation already exists: $repo"
+
+            fi
+
+          done
+
+                - name: Commit new project documentation
+        run: |
+          if [ -n "$(git status --porcelain project-content)" ]; then
+
+            git config user.name "github-actions[bot]"
+
+            git config user.email \
+              "41898282+github-actions[bot]@users.noreply.github.com"
+
+            git add project-content
+
+            git commit \
+              -m "Create documentation for new projects"
+
+            git push
+
+          else
+
+            echo "No new documentation files."
+
+          fi
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
