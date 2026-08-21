@@ -525,6 +525,116 @@ footer {
     white-space: nowrap;
 }
 
+/* =====================================
+   PROJECT DOCUMENTATION
+===================================== */
+
+.project-documentation {
+    line-height: 1.75;
+}
+
+.project-documentation h1 {
+    font-size: 20px;
+
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    padding-bottom: 8px;
+
+    border-bottom: 1px dashed var(--border);
+}
+
+.project-documentation h2 {
+    margin-top: 30px;
+    margin-bottom: 12px;
+
+    padding-bottom: 5px;
+
+    border-bottom: 1px dashed #333;
+
+    color: #c7c7c7;
+}
+
+.project-documentation h2::before {
+    content: "> ";
+    color: #666;
+}
+
+.project-documentation h3 {
+    margin-top: 22px;
+
+    color: #aaa;
+}
+
+.project-documentation p {
+    max-width: 800px;
+
+    color: #bbb;
+}
+
+.project-documentation ul {
+    padding-left: 25px;
+}
+
+.project-documentation li {
+    margin-bottom: 5px;
+}
+
+.project-documentation li::marker {
+    color: #666;
+}
+
+.project-documentation code {
+    background: #0d0d0d;
+
+    border: 1px solid #333;
+
+    padding: 2px 5px;
+
+    color: #bbb;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+}
+
+.project-documentation pre {
+    overflow-x: auto;
+
+    background: #0b0b0b;
+
+    border: 1px solid #333;
+
+    padding: 15px;
+
+    margin: 18px 0;
+}
+
+.project-documentation pre code {
+    border: 0;
+    padding: 0;
+}
+
+.project-documentation blockquote {
+    margin: 18px 0;
+
+    padding: 8px 15px;
+
+    border-left: 2px solid #555;
+
+    color: #888;
+}
+
+.project-documentation hr {
+    border: 0;
+
+    border-top: 1px dashed #333;
+
+    margin: 30px 0;
+}
+
 @media (max-width: 720px) {
     .layout {
         grid-template-columns: 1fr;

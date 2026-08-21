@@ -78,7 +78,7 @@ async function loadProject() {
         }
 
 
-        renderProject(repo);
+    await renderProject(repo);
 
     } catch (error) {
         console.error(error);
@@ -102,8 +102,31 @@ async function loadProject() {
     }
 }
 
+async function loadProjectDocumentation(repoName) {
+    try {
+        const response = await fetch(
+            `/project-content/${encodeURIComponent(repoName)}.md`
+        );
 
-function renderProject(repo) {
+        if (!response.ok) {
+            return null;
+        }
+
+        const markdown = await response.text();
+
+        return marked.parse(markdown);
+
+    } catch (error) {
+        console.warn(
+            "Project documentation not found:",
+            error
+        );
+
+        return null;
+    }
+}
+
+async function renderProject(repo) {
     const title =
         document.getElementById(
             "project-title"
@@ -177,6 +200,9 @@ function renderProject(repo) {
             : "";
 
 
+    const documentation =
+    await loadProjectDocumentation(repo.name);
+            
     container.innerHTML = `
 
         <section class="box project-hero">
@@ -257,16 +283,22 @@ function renderProject(repo) {
         </section>
 
 
-        <section class="box">
+        <section class="box project-documentation">
 
-            <h2>project notes</h2>
+    ${
+        documentation
+            ? documentation
+            : `
+                <h2>project notes</h2>
 
-            <p>
-                detailed documentation
-                coming soon...
-            </p>
+                <p>
+                    detailed documentation
+                    coming soon...
+                </p>
+            `
+    }
 
-        </section>
+</section>
 
     `;
 }
