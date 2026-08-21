@@ -13,7 +13,6 @@ permissions:
   id-token: write
 
 jobs:
-
   deploy:
 
     runs-on: ubuntu-latest
@@ -34,16 +33,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
         run: |
-
           mkdir -p data
 
           curl \
+            --fail-with-body \
+            --silent \
+            --show-error \
             -L \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $GH_TOKEN" \
             "https://api.github.com/users/$GITHUB_USERNAME/repos?per_page=100&sort=updated&direction=desc&type=owner" \
             > repositories.json
-
 
           jq '
             [
@@ -53,6 +53,8 @@ jobs:
                 .fork == false
                 and
                 .archived == false
+                and
+                .name != "codebymirela.github.io"
               )
               |
               {
@@ -63,10 +65,19 @@ jobs:
                 language,
                 topics,
                 stargazers_count,
-                updated_at
+                forks_count,
+                created_at,
+                updated_at,
+                pushed_at
               }
             ]
           ' repositories.json > data/projects.json
+
+          echo "Repositories found:"
+          jq length data/projects.json
+
+          echo "Generated projects.json:"
+          cat data/projects.json
 
 
       - name: Configure GitHub Pages
